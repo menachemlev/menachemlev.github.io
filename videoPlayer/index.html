@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width,height=device-height, initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0"
+    />
+    <title>Video Player</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="favicon.png" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <a
+      style="position: absolute; top: 1vh; right: 1vh; z-index: 100"
+      class="home"
+      href="https://www.menachemlev.com"
+      ><img style="width: 4vh" src="..//home.png"
+    /></a>
+    <div class="video_player">
+      <video class="video">
+        <source
+          src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+          type="video/mp4"
+        />
+      </video>
+      <div class="play_button">
+        <img src="./play.png" />
+      </div>
+      <div class="time_progress">
+        <div class="fill"></div>
+      </div>
+      <div class="volume_metter">
+        <div class="volume"></div>
+      </div>
+      <div class="volumeup hint">&uarr;</div>
+      <div class="volumedown hint">&darr;</div>
+      <div class="later hint">&rarr;</div>
+      <div class="sooner hint">&larr;</div>
+    </div>
+
+    <div class="landspace_message">
+      Use the left <span class="square">◀</span> and right
+      <span class="square">▶</span> keys to go sooner or later in the video.<br />
+      Use the up 🔼 and down 🔽 keys to lower or raise volume. <br />Use
+      spacebar <span class="square">&nbsp;---&nbsp;</span> to play/pause.
+    </div>
+
+    <div class="landspace_message1">
+      <b>Your better go landspace</b>
+      <div class="phone">📱</div>
+    </div>
+  </body>
+</html>
