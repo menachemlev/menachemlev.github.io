@@ -53,31 +53,10 @@ class ParticlesContainer {
 
     particle.style.top = `${line * 12.5}%`;
     particle.style.left = `${column * 4}%`;
-    const colorPick = +Math.floor(Math.random() * 6 + 1);
-    let color;
-    switch (colorPick) {
-      case 1:
-        color = "yellow";
-        break;
-      case 2:
-        color = "red";
-        break;
-      case 3:
-        color = "green";
-        break;
-      case 4:
-        color = "gray";
-        break;
-      case 5:
-        color = "hotpink";
-        break;
-      case 6:
-        color = "orange";
-        break;
-      default:
-        color = "blue";
-    }
-    particle.style.backgroundColor = color;
+
+    particle.style.backgroundColor = `rgb(${Math.random() * 256},${
+      Math.random() * 256
+    },${Math.random() * 256})`;
     this.#particlesArray.push({
       particle: particle,
       line: line,

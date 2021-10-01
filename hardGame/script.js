@@ -143,15 +143,15 @@ class HardGame {
     let highscoreText = "";
     if (localStorage) {
       if (localStorage.highscore) {
-        if (localStorage.highscore < this.#score)
-          localStorage.highscore = this.#score;
-        else highscoreText = `( highscore: ${localStorage.highscore})`;
+        localStorage.highscore = Math.max(this.#score, localStorage.highscore);
+        highscoreText = `( highscore: ${localStorage.highscore})`;
       } else {
-        if (localStorage.highscore > 0)
+        if (this.#score > 0) {
           localStorage.setItem("highscore", this.#score);
+          highscoreText = `( highscore: ${localStorage.highscore})`;
+        }
       }
     }
-
     this.#scoreELEM.textContent = `${this.#score} ${highscoreText}`;
   }
 
