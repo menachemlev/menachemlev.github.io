@@ -40,17 +40,21 @@ class ParticlesContainer {
   addParticle() {
     if (this.#particlesArray.length >= 200) return;
     const particle = document.createElement("div");
-    let line = +Math.floor(Math.random() * 8);
-    let column = +Math.floor(Math.random() * 25);
-    while (this.#particlesIndexesArray[line * 25 + column]) {
-      line = +Math.floor(Math.random() * 8);
-      column = +Math.floor(Math.random() * 25);
-      if (!this.#particlesIndexesArray[line * 25 + column]) {
+    const placesAvailable = 200 - this.#particlesArray.length;
+    let reverseCounter = +Math.floor(Math.random() * placesAvailable);
+    let indexForNewParticle = 0;
+    for (const [index, val] of Object.entries(this.#particlesIndexesArray)) {
+      if (val === false) reverseCounter--;
+      if (reverseCounter < 0) {
+        indexForNewParticle = index;
         break;
       }
     }
-    this.#particlesIndexesArray[line * 25 + column] = true;
 
+    const line = +Math.floor(indexForNewParticle / 25);
+    const column = indexForNewParticle % 25;
+
+    this.#particlesIndexesArray[line * 25 + column] = true;
     particle.style.top = `${line * 12.5}%`;
     particle.style.left = `${column * 4}%`;
 
