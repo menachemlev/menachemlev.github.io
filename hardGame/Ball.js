@@ -43,8 +43,8 @@ class Ball {
   }
   _checkForBall() {
     if (
-      this.#ballTranslate[0] < -(this.#GAME_CONTAINER_WIDTH_IN_VW / 2) ||
-      this.#ballTranslate[0] >
+      this.#ballTranslate[0] <= -(this.#GAME_CONTAINER_WIDTH_IN_VW / 2) ||
+      this.#ballTranslate[0] >=
         this.#GAME_CONTAINER_WIDTH_IN_VW / 2 - this.#BALL_VH * this.#VW_IN_VH
     )
       this.horizontalBounce *= -1;
