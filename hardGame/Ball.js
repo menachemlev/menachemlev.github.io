@@ -42,12 +42,13 @@ class Ball {
     this._checkForBall();
   }
   _checkForBall() {
+    if (this.#ballTranslate[0] <= -(this.#GAME_CONTAINER_WIDTH_IN_VW / 2))
+      this.horizontalBounce = +Math.abs(this.horizontalBounce);
     if (
-      this.#ballTranslate[0] <= -(this.#GAME_CONTAINER_WIDTH_IN_VW / 2) ||
       this.#ballTranslate[0] >=
-        this.#GAME_CONTAINER_WIDTH_IN_VW / 2 - this.#BALL_VH * this.#VW_IN_VH
+      this.#GAME_CONTAINER_WIDTH_IN_VW / 2 - this.#BALL_VH * this.#VW_IN_VH
     )
-      this.horizontalBounce *= -1;
+      this.horizontalBounce = -Math.abs(this.horizontalBounce);
   }
 
   wasBallDropped() {
