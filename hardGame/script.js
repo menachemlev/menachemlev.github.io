@@ -109,7 +109,7 @@ class HardGame {
     //hide Game over message
     this.#gameoverELEM.style.display = "none";
 
-    this.#catcherObj.addingEvents();
+    this.#catcherObj.initiliazeCatcher();
 
     this.#renderBallInterval = setInterval(
       this.#ballObj.renderBall.bind(this.#ballObj),

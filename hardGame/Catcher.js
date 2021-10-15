@@ -10,6 +10,8 @@ class Catcher {
   #landspace = window.innerWidth > window.innerHeight;
   #containerELEM;
 
+  #gameIsOn = true;
+
   constructor(
     GAME_CONTAINER_HEIGHT_IN_VH,
     GAME_CONTAINER_WIDTH_IN_VW,
@@ -29,65 +31,78 @@ class Catcher {
   getSize(property) {
     return this.#catcherELEM.getBoundingClientRect()[property];
   }
+  initiliazeCatcher() {
+    this.#gameIsOn = true;
+    this.#catcherTranslateX = 0;
+    this.#catcherELEM.style.transform = `translateX(${
+      this.#catcherTranslateX
+    }%)`;
+    this._addingEvents();
+  }
+  _addingEvents() {
+    //Updating
 
-  addingEvents() {
-    window.addEventListener("keydown", (e) =>
-      this._moveCatcherUsingKeyboard.call(this, e)
+    window.addEventListener(
+      "keydown",
+      (e) => this.#gameIsOn && this._moveCatcherUsingKeyboard.call(this, e)
     );
 
     //on mouse drag
-    this.#catcherELEM.addEventListener("dragstart", (e) =>
-      this._startDragWithMouse.call(this, e)
+    this.#catcherELEM.addEventListener(
+      "dragstart",
+      (e) => this.#gameIsOn && this._startDragWithMouse.call(this, e)
     );
 
-    this.#catcherELEM.addEventListener("dragend", (e) =>
-      this._moveCatcherWithMouse.call(this, e)
+    this.#catcherELEM.addEventListener(
+      "dragend",
+      (e) => this.#gameIsOn && this._moveCatcherWithMouse.call(this, e)
     );
 
     //ontouch drag
-    this.#catcherELEM.addEventListener("touchstart", (e) =>
-      this._startDragWithTouch.call(this, e)
+    this.#catcherELEM.addEventListener(
+      "touchstart",
+      (e) => this.#gameIsOn && this._startDragWithTouch.call(this, e)
     );
 
-    this.#catcherELEM.addEventListener("touchmove", (e) =>
-      this._moveCatcherWithTouchDrag.call(this, e)
+    this.#catcherELEM.addEventListener(
+      "touchmove",
+      (e) => this.#gameIsOn && this._moveCatcherWithTouchDrag.call(this, e)
     );
 
     //ontouch the bottom of the conatiner
-    this.#containerELEM.addEventListener("touchstart", (e) =>
-      this._moveCatcherWithTouch.call(this, e)
+    this.#containerELEM.addEventListener(
+      "touchstart",
+      (e) => this.#gameIsOn && this._moveCatcherWithTouch.call(this, e)
     );
   }
 
   _moveCatcherUsingKeyboard(e) {
     if (e.keyCode === 37) {
       //left
-      if (this.#catcherTranslateX <= -200) return;
-      this.#catcherTranslateX -= 10;
-      this.#catcherELEM.style.transform = `translateX(${
-        this.#catcherTranslateX
-      }%)`;
+      this.#catcherTranslateX -= 5;
+      this.#catcherTranslateX = +Math.max(this.#catcherTranslateX, -200);
     }
     if (e.keyCode === 39) {
       //right
-      if (this.#catcherTranslateX >= 200) return;
-      this.#catcherTranslateX += 10;
-      this.#catcherELEM.style.transform = `translateX(${
-        this.#catcherTranslateX
-      }%)`;
+      this.#catcherTranslateX += 5;
+      this.#catcherTranslateX = +Math.min(this.#catcherTranslateX, 200);
     }
+    this.#catcherELEM.style.transform = `translateX(${
+      this.#catcherTranslateX
+    }%)`;
   }
 
   _startDragWithMouse(e) {
     this.#lastMouseXcoord = e.clientX;
   }
   _moveCatcherWithMouse(e) {
-    const original = this.#catcherTranslateX;
-    this.#catcherTranslateX += (e.clientX - this.#lastMouseXcoord) / 2;
-    if (this.#catcherTranslateX <= -200 || this.#catcherTranslateX >= 200) {
-      this.#catcherTranslateX = original;
-      return;
-    }
+    const catcherWidth = this.getSize("width");
+    const distanceInPxFromLastMouseXCoord = e.clientX - this.#lastMouseXcoord;
+    const differnceInPercents =
+      (100 * (distanceInPxFromLastMouseXCoord / 2)) / catcherWidth;
+    this.#catcherTranslateX += differnceInPercents;
+    this.#catcherTranslateX = +Math.max(-200, this.#catcherTranslateX);
+    this.#catcherTranslateX = +Math.min(200, this.#catcherTranslateX);
     this.#catcherELEM.style.transform = `translateX(${
       this.#catcherTranslateX
     }%)`;
@@ -133,5 +148,6 @@ class Catcher {
   reset() {
     this.#catcherTranslateX = 0;
     this._removingEvents();
+    this.#gameIsOn = false;
   }
 }
