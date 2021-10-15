@@ -44,7 +44,7 @@ class ParticlesContainer {
     let reverseCounter = +Math.floor(Math.random() * placesAvailable);
     let indexForNewParticle = 0;
     for (const [index, val] of Object.entries(this.#particlesIndexesArray)) {
-      if (val === false) reverseCounter--;
+      if (!val) reverseCounter--;
       if (reverseCounter < 0) {
         indexForNewParticle = index;
         break;
