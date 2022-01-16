@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0,
+       minimum-scale=1.0 , maximum-scale=1.0"
+    />
+    <link rel="shortcut icon" href="./icon.png" />
+    <title>Minesweeper</title>
+    <script src="./script.js" defer></script>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body oncontextmenu="return false;">
+    <h1 class="title">💣🚩 MineSweeper</h1>
+    <div class="container"></div>
+    <div class="menu">
+      <div>Flags left: <span class="flags-left">0</span></div>
+      <div class="restart-btn">🔄restart</div>
+      <center>
+        How many tiles?<br />
+        <select class="tiles-amount-selector">
+          <option value="100">100</option>
+          <option value="169">169</option>
+          <option value="256">256</option>
+        </select>
+      </center>
+      <center>
+        Difficulty?<br />
+        <select class="difficulty-selector">
+          <option value="1">Easy</option>
+          <option value="100">Medium</option>
+          <option value="169">Hard</option>
+        </select>
+      </center>
+    </div>
+    <br /><br />
+  </body>
+</html>
