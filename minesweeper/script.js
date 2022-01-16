@@ -22,27 +22,7 @@ function init() {
   set_styles();
 }
 
-function process_game_over() {
-  game_is_on = false;
-  setTimeout(
-    container_elm.insertAdjacentHTML(
-      "afterbegin",
-      `<div class='gameover'>😢GAME OVER</div>`
-    ),
-    300
-  );
-}
-
-function process_victory() {
-  game_is_on = false;
-  setTimeout(
-    container_elm.insertAdjacentHTML(
-      "afterbegin",
-      `<div class='win'>🏆Victory</div>`
-    ),
-    300
-  );
-}
+function process_game_over() {}
 
 function mobile_check() {
   let check = false;
@@ -67,7 +47,17 @@ function restart_game() {
       tile.elm.textContent = "🚩";
       flags_num--;
       if (tile.is_bomb) bombs_num--;
-      if (bombs_num == 0) return process_victory();
+      if (bombs_num == 0)
+        return (() => {
+          game_is_on = false;
+          setTimeout(
+            container_elm.insertAdjacentHTML(
+              "afterbegin",
+              `<div class='win'>🏆Victory</div>`
+            ),
+            300
+          );
+        })();
     } else if (tile.elm.textContent == "🚩") {
       tile.elm.textContent = "";
       flags_num++;
@@ -121,7 +111,16 @@ function restart_game() {
         this.elm.style.background = "white";
         if (this.is_bomb) {
           this.elm.textContent = "💣";
-          return process_game_over();
+          return (() => {
+            game_is_on = false;
+            setTimeout(
+              container_elm.insertAdjacentHTML(
+                "afterbegin",
+                `<div class='gameover'>😢GAME OVER</div>`
+              ),
+              300
+            );
+          })();
         } else {
           const surrounding_bombs = get_surrounding_tiles(this).filter(
             (t) => t.is_bomb
@@ -157,11 +156,10 @@ function restart_game() {
           });
           this.elm.addEventListener("touchend", () => {
             clearTimeout(touch_timeout);
-            if (game_is_on && !is_flagged) this.handle_click.call(_this);
+            if (game_is_on && !is_flagged) this.handle_click();
             is_flagged = false;
           });
-        } else
-          this.elm.addEventListener("click", this.handle_click.bind(_this));
+        } else this.elm.addEventListener("click", this.handle_click.bind(this));
       },
     };
   };
@@ -180,7 +178,6 @@ function restart_game() {
       container_elm.insertAdjacentElement("afterbegin", tile.elm);
     }
   }
-
   let flags_num = bombs_num;
   flags_left_elm.textContent = flags_num;
   window.addEventListener("mousedown", (e) => {
