@@ -81,15 +81,30 @@ function restart_game() {
         Math.abs(tile.row - t.row) <= 1 &&
         !(t.col == tile.col && t.row == tile.row)
     );
-  const show_surrounding_tiles = (tile) =>
-    get_surrounding_tiles(tile)
-      .filter((t, i) => !t.is_bomb && !i % 3)
-      .forEach((t) => {
-        t.elm.textContent = get_surrounding_tiles(t).filter(
-          (t) => t.is_bomb
-        ).length;
+  const show_surrounding_tiles = (tile, already_handeld_zeros = []) => {
+    tile.elm.style.background = "grey";
+    tile.elm.style.borderColor = "white";
+    tile.elm.textContent = " ";
+    already_handeld_zeros.push(tile);
+    const surrounding_num_tiles = get_surrounding_tiles(tile).filter(
+      (t) =>
+        !t.is_bomb &&
+        !already_handeld_zeros
+          .map((t) => `${t.col}${t.row}`)
+          .includes(`${t.col}${t.row}`)
+    );
+    surrounding_num_tiles.forEach((t) => {
+      const surrounding_bombs_n = get_surrounding_tiles(t).filter(
+        (t) => t.is_bomb
+      ).length;
+      if (surrounding_bombs_n) {
+        t.elm.textContent = surrounding_bombs_n;
         t.elm.style.background = "white";
-      });
+      } else {
+        show_surrounding_tiles(t, already_handeld_zeros);
+      }
+    });
+  };
   const process_tile_obj = (col, row) => {
     return {
       col,
@@ -98,18 +113,22 @@ function restart_game() {
       elm: document.createElement("div"),
       handle_click: function () {
         if (!game_is_on) return;
+        if (this.elm.textContent != "") return;
         this.elm.style.background = "white";
         if (this.is_bomb) {
           this.elm.textContent = "💣";
           return process_game_over();
         } else {
-          this.elm.textContent = get_surrounding_tiles(this).filter(
+          const surrounding_bombs = get_surrounding_tiles(this).filter(
             (t) => t.is_bomb
           ).length;
-          show_surrounding_tiles(this);
+          if (!surrounding_bombs) return show_surrounding_tiles(this);
+          this.elm.textContent = surrounding_bombs;
         }
       },
       init: function () {
+        this.is_bomb = Math.random() > 1 - 0.15 * difficulty;
+        if (this.is_bomb) bombs_num++;
         this.elm.classList.add("tile");
         Object.assign(this.elm.style, {
           height: `${100 / tiles_sqrt}%`,
@@ -157,25 +176,7 @@ function restart_game() {
       container_elm.insertAdjacentElement("afterbegin", tile.elm);
     }
   }
-  tile_objs.forEach((tile) => {
-    if (tile.is_bomb) return;
-    const surrounding_bombs = get_surrounding_tiles(tile).filter(
-      (t) => t.is_bomb
-    );
-    if (
-      !surrounding_bombs.length ||
-      (surrounding_bombs.length < difficulty && Math.random > 0.5)
-    ) {
-      const safe_surrounding_tiles = get_surrounding_tiles(tile).filter(
-        (t) => !t.is_bomb
-      );
-      if (!safe_surrounding_tiles.length) return;
-      safe_surrounding_tiles[
-        Math.floor(Math.random() * safe_surrounding_tiles.length)
-      ].is_bomb = true;
-      bombs_num++;
-    }
-  });
+
   let flags_num = bombs_num;
   flags_left_elm.textContent = flags_num;
   window.addEventListener("mousedown", (e) => {
@@ -197,6 +198,7 @@ function restart_game() {
 setInterval(set_styles, 1000);
 restart_game();
 /*
+DEBUG:
   show_content = () =>
     tile_objs.forEach((t) => {
       t.elm.textContent = t.is_bomb
@@ -204,4 +206,4 @@ restart_game();
         : get_surrounding_tiles(t).filter((t) => t.is_bomb).length;
     });
   show_content();
-*/
+  */

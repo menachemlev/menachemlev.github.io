@@ -61,11 +61,14 @@ body {
   cursor: pointer;
 }
 .restart-btn:hover {
-  background-color: aquamarine;
+  background-color: rgb(96, 131, 177);
 }
 .tile {
   background-color: rgb(221, 221, 221);
-  border: 2px solid rgb(56, 56, 56);
+  border-left: white 3px solid;
+  border-top: white 3px solid;
+  border-bottom: rgb(170, 170, 170) 3px solid;
+  border-right: rgb(170, 170, 170) 3px solid;
   position: absolute;
   display: grid;
   place-items: center;
