@@ -98,6 +98,10 @@ function restart_game() {
         (t) => t.is_bomb
       ).length;
       if (surrounding_bombs_n) {
+        if (t.elm.textContent == "🚩") {
+          flags_num++;
+          flags_left_elm.textContent = flags_num;
+        }
         t.elm.textContent = surrounding_bombs_n;
         t.elm.style.background = "white";
       } else {
@@ -127,7 +131,7 @@ function restart_game() {
         }
       },
       init: function () {
-        this.is_bomb = Math.random() > 1 - 0.15 * difficulty;
+        this.is_bomb = Math.random() > 1 - 0.1 * difficulty;
         if (this.is_bomb) bombs_num++;
         this.elm.classList.add("tile");
         Object.assign(this.elm.style, {

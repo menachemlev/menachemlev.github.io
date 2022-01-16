@@ -83,6 +83,9 @@ body {
     font-size: 135%;
     margin: 1em 0;
   }
+  .title {
+    font-size: 135%;
+  }
 }
 
 @-webkit-keyframes fadeIn {
