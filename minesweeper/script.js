@@ -5,8 +5,16 @@ const tiles_amount_selector = document.querySelector(".tiles-amount-selector");
 const difficulty_selector = document.querySelector(".difficulty-selector");
 const is_mobile = mobile_check();
 document.querySelector(".restart-btn").addEventListener("click", restart_game);
-tiles_amount_selector.addEventListener("change", restart_game);
-difficulty_selector.addEventListener("change", restart_game);
+tiles_amount_selector.addEventListener("change", () => {
+  if (localStorage !== undefined)
+    localStorage.setItem("tiles_amount", tiles_amount_selector.value);
+  restart_game();
+});
+difficulty_selector.addEventListener("change", () => {
+  if (localStorage !== undefined)
+    localStorage.setItem("difficulty", difficulty_selector.value);
+  restart_game();
+});
 let game_is_on;
 
 function set_styles() {
@@ -196,6 +204,10 @@ function restart_game() {
     }
   });
 }
+if ((diff = localStorage.getItem("difficulty")))
+  difficulty_selector.value = diff;
+if ((amount = localStorage.getItem("tiles_amount")))
+  tiles_amount_selector.value = amount;
 setInterval(set_styles, 1000);
 restart_game();
 /*
