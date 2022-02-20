@@ -212,11 +212,9 @@ setInterval(set_styles, 1000);
 restart_game();
 /*
 DEBUG:
-  show_content = () =>
     tile_objs.forEach((t) => {
       t.elm.textContent = t.is_bomb
         ? "💣"
         : get_surrounding_tiles(t).filter((t) => t.is_bomb).length;
     });
-  show_content();
-  */
+*/

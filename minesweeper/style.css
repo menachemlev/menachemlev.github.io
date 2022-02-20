@@ -74,8 +74,6 @@ body {
   place-items: center;
   cursor: pointer;
 }
-.flags-left {
-}
 @media screen and (max-width: 64em) {
   .menu > * {
     flex-basis: 95%;
