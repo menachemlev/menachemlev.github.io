@@ -3,14 +3,14 @@
 //landspace functionallity
 let landspace = window.innerWidth > window.innerHeight;
 //Checking if user is going to landspace or portrait
-setInterval(() => {
+window.addEventListener('orientationchange', () => {
   if (window.innerHeight > window.innerWidth && landspace) {
     location.reload();
   }
   if (window.innerWidth > window.innerHeight && !landspace) {
     location.reload();
   }
-}, 250);
+});
 
 //isMobile
 window.mobileAndTabletCheck = function () {
@@ -86,11 +86,11 @@ class HardGame {
   //Score functionality
 
   reset() {
-    clearInterval(this.#gravityInterval);
-    clearInterval(this.#renderBallInterval);
-    clearInterval(this.#isParticleTouchedByBallInterval);
-    clearInterval(this.#addParticlesInterval);
-    clearInterval(this.#isBallTouchingCatcherInterval);
+    cancelAnimationFrame(this.#gravityInterval);
+    cancelAnimationFrame(this.#renderBallInterval);
+    cancelAnimationFrame(this.#isParticleTouchedByBallInterval);
+    cancelAnimationFrame(this.#addParticlesInterval);
+    cancelAnimationFrame(this.#isBallTouchingCatcherInterval);
 
     this.#ballObj.reset();
     this.#catcherObj.reset();
@@ -111,31 +111,51 @@ class HardGame {
 
     this.#catcherObj.initiliazeCatcher();
 
-    this.#renderBallInterval = setInterval(
-      this.#ballObj.renderBall.bind(this.#ballObj),
-      this.#RENDER_SPEED
-    );
+    const renderLoop = () => {
+      this.#ballObj.renderBall.call(this.#ballObj);
+      this.#renderBallInterval = requestAnimationFrame(renderLoop);
+    };
+    this.#renderBallInterval = requestAnimationFrame(renderLoop);
 
-    this.#gravityInterval = setInterval(() => {
-      this.#ballObj.gravity.call(this.#ballObj);
-      if (this.#ballObj.wasBallDropped.call(this.#ballObj)) this.gameOver();
-    }, this.#RENDER_SPEED);
+    let lastGravityTime = 0;
+    const gravityLoop = (currentTime) => {
+      if (currentTime - lastGravityTime >= this.#RENDER_SPEED) {
+        this.#ballObj.gravity.call(this.#ballObj);
+        if (this.#ballObj.wasBallDropped.call(this.#ballObj)) this.gameOver();
+        lastGravityTime = currentTime;
+      }
+      this.#gravityInterval = requestAnimationFrame(gravityLoop);
+    };
+    this.#gravityInterval = requestAnimationFrame(gravityLoop);
 
-    this.#addParticlesInterval = setInterval(
-      this.#particlesContainerObj.addParticle.bind(this.#particlesContainerObj),
-      this.#SPEED
-    );
+    let lastParticleTime = 0;
+    const particleLoop = (currentTime) => {
+      if (currentTime - lastParticleTime >= this.#SPEED) {
+        this.#particlesContainerObj.addParticle.call(this.#particlesContainerObj);
+        lastParticleTime = currentTime;
+      }
+      this.#addParticlesInterval = requestAnimationFrame(particleLoop);
+    };
+    this.#addParticlesInterval = requestAnimationFrame(particleLoop);
 
-    this.#isParticleTouchedByBallInterval = setInterval(() => {
-      this.#particlesContainerObj.handleHittedParticles.call(
-        this.#particlesContainerObj,
-        this._updateScore.bind(this)
-      );
-    }, this.#RENDER_SPEED * 5);
+    let lastCollisionTime = 0;
+    const collisionLoop = (currentTime) => {
+      if (currentTime - lastCollisionTime >= this.#RENDER_SPEED * 5) {
+        this.#particlesContainerObj.handleHittedParticles.call(
+          this.#particlesContainerObj,
+          this._updateScore.bind(this)
+        );
+        lastCollisionTime = currentTime;
+      }
+      this.#isParticleTouchedByBallInterval = requestAnimationFrame(collisionLoop);
+    };
+    this.#isParticleTouchedByBallInterval = requestAnimationFrame(collisionLoop);
 
-    this.#isBallTouchingCatcherInterval = setInterval(() => {
+    const catcherLoop = () => {
       if (this._ballIsTouchingCatcher.call(this)) this._bounceBall.call(this);
-    }, this.#RENDER_SPEED);
+      this.#isBallTouchingCatcherInterval = requestAnimationFrame(catcherLoop);
+    };
+    this.#isBallTouchingCatcherInterval = requestAnimationFrame(catcherLoop);
   }
   //helpers
   _updateScore() {

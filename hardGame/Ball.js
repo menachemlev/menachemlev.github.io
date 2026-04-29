@@ -18,21 +18,27 @@ class Ball {
   bounceBall(bounceSpeed, RENDER_SPEED) {
     this.#gravitySpeed = 0;
     const bounceSpeedPercent = bounceSpeed / 100;
-    const bounceInterval = setInterval(() => {
-      this.#ballTranslate[1] -= 0.5 * bounceSpeed;
-      this.#ballTranslate[0] += this.horizontalBounce * bounceSpeed;
-      bounceSpeed -= bounceSpeedPercent;
-      if (bounceSpeed <= 0 || this.#ballTranslate[1] < 0) {
-        clearInterval(bounceInterval);
-        this.#gravitySpeed = 1;
+    let lastBounceTime = 0;
+    const bounceAnimation = (currentTime) => {
+      if (currentTime - lastBounceTime >= RENDER_SPEED) {
+        this.#ballTranslate[1] -= 0.8 * bounceSpeed;
+        this.#ballTranslate[0] += this.horizontalBounce * bounceSpeed;
+        bounceSpeed -= bounceSpeedPercent;
+        lastBounceTime = currentTime;
       }
-    }, RENDER_SPEED);
+      if (bounceSpeed <= 0 || this.#ballTranslate[1] < 0) {
+        this.#gravitySpeed = 1;
+      } else {
+        requestAnimationFrame(bounceAnimation);
+      }
+    };
+    requestAnimationFrame(bounceAnimation);
   }
 
   gravity() {
     this.#ballTranslate[0] += this.horizontalBounce * this.#gravitySpeed;
-    this.#ballTranslate[1] += 0.3 * this.#gravitySpeed;
-    this.#gravitySpeed += 0.0075;
+    this.#ballTranslate[1] += 0.5 * this.#gravitySpeed;
+    this.#gravitySpeed += 0.02;
   }
 
   renderBall() {
