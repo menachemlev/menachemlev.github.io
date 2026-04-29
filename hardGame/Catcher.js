@@ -54,8 +54,8 @@ class Catcher {
     );
 
     this.#catcherELEM.addEventListener(
-      "dragend",
-      (e) => this.#gameIsOn && this._moveCatcherWithMouse.call(this, e)
+      "drag",
+      (e) => this.#gameIsOn && e.clientX && this._moveCatcherWithMouse.call(this, e)
     );
 
     //ontouch drag
@@ -99,13 +99,14 @@ class Catcher {
     const catcherWidth = this.getSize("width");
     const distanceInPxFromLastMouseXCoord = e.clientX - this.#lastMouseXcoord;
     const differnceInPercents =
-      (100 * (distanceInPxFromLastMouseXCoord / 2)) / catcherWidth;
+      (100 * distanceInPxFromLastMouseXCoord) / catcherWidth;
     this.#catcherTranslateX += differnceInPercents;
     this.#catcherTranslateX = +Math.max(-200, this.#catcherTranslateX);
     this.#catcherTranslateX = +Math.min(200, this.#catcherTranslateX);
     this.#catcherELEM.style.transform = `translateX(${
       this.#catcherTranslateX
     }%)`;
+    this.#lastMouseXcoord = e.clientX;
   }
   _startDragWithTouch(e) {
     this.#lastMouseXcoord = e.touches[0].pageX;
