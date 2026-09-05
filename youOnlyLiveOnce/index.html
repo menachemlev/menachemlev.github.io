@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>חיים רק פעם אחת | יהודה עוזר לב</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&family=Frank+Ruhl+Libre:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '555735897256596'); /* יש להחליף את YOUR_PIXEL_ID במזהה הפיקסל */
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <style>
+        :root {
+            --bg-dark: #0b0f19;
+            --card-bg: rgba(22, 28, 45, 0.7);
+            --gold-primary: #d4af37;
+            --gold-light: #f3e5ab;
+            --gold-gradient: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border-color: rgba(212, 175, 55, 0.25);
+            --star-color: #f43f5e;
+            --accent-sale: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Assistant', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        /* Ambient Glow Backgrounds */
+        .ambient-glow {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.12) 0%, rgba(0,0,0,0) 70%);
+            top: -100px;
+            right: -100px;
+            z-index: 0;
+            pointer-events: none;
+            animation: pulseGlow 10s infinite alternate;
+        }
+
+        .ambient-glow-2 {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, rgba(0,0,0,0) 70%);
+            bottom: -150px;
+            left: -150px;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 80px 0 50px 0;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        /* 3D Book Presentation */
+        .book-container {
+            display: flex;
+            justify-content: center;
+            perspective: 1200px;
+        }
+
+        .book-wrapper {
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .book-wrapper:hover {
+            transform: rotateY(-12deg) rotateX(6deg) scale(1.03);
+        }
+
+        .book-img {
+            max-width: 350px;
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8),
+                        0 0 30px rgba(212, 175, 55, 0.25);
+            border: 1px solid var(--border-color);
+            display: block;
+        }
+
+        /* Typography */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--border-color);
+            color: var(--gold-light);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .book-title {
+            font-family: 'Frank Ruhl Libre', serif;
+            font-size: 3.4rem;
+            font-weight: 800;
+            line-height: 1.15;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .author-name {
+            font-size: 1.3rem;
+            color: var(--gold-light);
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .rating-summary {
+            color: var(--star-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 24px;
+            font-size: 1rem;
+        }
+
+        .rating-summary span {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .quote-box {
+            position: relative;
+            background: var(--card-bg);
+            border-right: 4px solid var(--gold-primary);
+            padding: 20px 24px;
+            border-radius: 4px 16px 16px 4px;
+            backdrop-filter: blur(12px);
+            margin-bottom: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-left: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .quote-box p {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+
+        /* Purchase Options */
+        .purchase-options {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+
+        .price-card {
+            position: relative;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            padding: 20px 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(8px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .price-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--gold-primary);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.15);
+        }
+
+        .price-card.featured {
+            border-color: rgba(212, 175, 55, 0.5);
+            background: linear-gradient(180deg, rgba(212, 175, 55, 0.08) 0%, rgba(22, 28, 45, 0.85) 100%);
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.1);
+        }
+
+        .sale-tag {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: #fff;
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 3px 12px;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(239, 68, 68, 0.4);
+            white-space: nowrap;
+        }
+
+        .card-type {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .card-price-container {
+            margin-bottom: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 55px;
+        }
+
+        .card-price {
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .card-price.sale-active {
+            font-size: 2.1rem;
+            color: var(--gold-light);
+            font-weight: 800;
+            line-height: 1.1;
+        }
+
+        .old-price {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            text-decoration: line-through;
+            opacity: 0.75;
+            margin-bottom: 2px;
+        }
+
+        .card-btn {
+            width: 100%;
+            padding: 11px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            transition: 0.3s;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .btn-gold {
+            background: var(--gold-gradient);
+            color: #0b0f19;
+        }
+
+        .btn-gold:hover {
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+            transform: scale(1.02);
+            opacity: 0.95;
+        }
+
+        .btn-outline {
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--gold-light);
+        }
+
+        .book-specs {
+            display: flex;
+            gap: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 18px;
+        }
+
+        .spec-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+        }
+
+        .spec-item a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .spec-item a:hover {
+            color: var(--gold-light);
+        }
+
+        .spec-item i {
+            color: var(--gold-primary);
+        }
+
+        /* Insights Section */
+        .section-insights {
+            padding: 70px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Frank Ruhl Libre', serif;
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            color: #fff;
+        }
+
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .insight-card {
+            background: var(--card-bg);
+            padding: 26px 22px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .insight-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .insight-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            background: rgba(212, 175, 55, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--gold-primary);
+            margin-bottom: 16px;
+        }
+
+        .insight-card h3 {
+            font-size: 1.15rem;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .insight-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Reviews Section */
+        .reviews-section {
+            padding: 70px 0 100px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .reviews-container {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 20px;
+            padding: 40px;
+            backdrop-filter: blur(14px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .reviews-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .reviews-header-title {
+            font-family: 'Frank Ruhl Libre', serif;
+            font-size: 1.8rem;
+            color: #fff;
+        }
+
+        .score-box {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+        }
+
+        .score-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--star-color);
+            letter-spacing: -1px;
+        }
+
+        .score-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .score-info .label {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .score-info .total {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Review Card */
+        .review-card {
+            padding: 28px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .review-stars {
+            color: var(--star-color);
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            display: flex;
+            gap: 3px;
+        }
+
+        .reviewer-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .reviewer-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(59, 130, 246, 0.2));
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--gold-light);
+            font-size: 0.95rem;
+        }
+
+        .reviewer-name {
+            font-weight: 700;
+            color: #fff;
+            font-size: 1.05rem;
+        }
+
+        .review-date {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .review-content {
+            font-size: 1.05rem;
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotateY(0deg); }
+            50% { transform: translateY(-12px) rotateY(-4deg); }
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(1); opacity: 0.6; }
+            100% { transform: scale(1.2); opacity: 0.9; }
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .book-container {
+                order: -1;
+            }
+
+            .book-img {
+                max-width: 260px;
+            }
+
+            .author-name, .rating-summary, .book-specs {
+                justify-content: center;
+            }
+
+            .quote-box {
+                border-right: none;
+                border-top: 3px solid var(--gold-primary);
+                border-radius: 14px;
+            }
+
+            .reviews-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .purchase-options {
+                grid-template-columns: 1fr;
+                max-width: 380px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-glow"></div>
+    <div class="ambient-glow-2"></div>
+
+    <div class="container">
+        
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-grid">
+                
+                <!-- Right Side: Content -->
+                <div class="content-side">
+                    <span class="badge">
+                        <i class="fa-solid fa-sparkles"></i> חדש על המדף • מבצע השקה לחגים
+                    </span>
+                    
+                    <h1 class="book-title">חיים רק פעם אחת</h1>
+                    <div class="author-name">
+                        <i class="fa-solid fa-feather-pointed"></i> יהודה עוזר לב
+                    </div>
+
+                    <div class="rating-summary">
+                        <div>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <span>(חוות דעת לקוח 1)</span>
+                    </div>
+
+                    <div class="quote-box">
+                        <p>"ישנן תובנות עמוקות, עמוקות וחשובות. חשובות לאדם – להרגיש ולהפנים שהחיים קורים רק פעם אחת."</p>
+                        <p style="font-size: 0.95rem; color: #94a3b8; font-style: normal; margin-top: 10px;">
+                            ספר שנכתב מדם ליבי, בהקשרים של נושאים משמעותיים בחיי. אני מקווה שהוא ייתן לך דרך להסתכלות בריאה יותר על הזמניות של החיים ושל האתגרים העומדים מולך.
+                        </p>
+                    </div>
+
+                    <!-- Pricing Options -->
+                    <div class="purchase-options">
+                        <!-- Digital Edition -->
+                        <div class="price-card">
+                            <div class="card-type"><i class="fa-solid fa-tablet-screen-button"></i> מהדורה דיגיטלית</div>
+                            <div class="card-price-container">
+                                <div class="card-price">₪35</div>
+                            </div>
+                            <a href="https://nivbook.co.il/product/%D7%97%D7%99%D7%99%D7%9D-%D7%A8%D7%A7-%D7%A4%D7%A2%D7%9D-%D7%90%D7%97%D7%AA/" target="_blank" rel="noopener noreferrer" class="card-btn btn-outline js-buy-trigger" data-type="digital" data-price="35">
+                                <i class="fa-solid fa-download"></i> רכישה דיגיטלית
+                            </a>
+                        </div>
+
+                        <!-- Print Edition with Sale -->
+                        <div class="price-card featured">
+                            <span class="sale-tag">מבצע השקה מיוחד</span>
+                            <div class="card-type"><i class="fa-solid fa-book"></i> מהדורה מודפסת</div>
+                            <div class="card-price-container">
+                                <span class="old-price">₪179</span>
+                                <div class="card-price sale-active">₪79</div>
+                            </div>
+                            <a href="https://nivbook.co.il/product/%D7%97%D7%99%D7%99%D7%9D-%D7%A8%D7%A7-%D7%A4%D7%A2%D7%9D-%D7%90%D7%97%D7%AA/" target="_blank" rel="noopener noreferrer" class="card-btn btn-gold js-buy-trigger" data-type="print" data-price="79">
+                                <i class="fa-solid fa-cart-shopping"></i> לרכישה באתר ההוצאה
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Book Meta -->
+                    <div class="book-specs">
+                        <div class="spec-item">
+                            <i class="fa-solid fa-building-columns"></i>
+                            <span>הוצאה לאור: <a href="https://nivbook.co.il/product/%D7%97%D7%99%D7%99%D7%9D-%D7%A8%D7%A7-%D7%A4%D7%A2%D7%9D-%D7%90%D7%97%D7%AA/" target="_blank" rel="noopener noreferrer"><strong>ספרי ניב</strong></a></span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fa-solid fa-file-lines"></i>
+                            <span>עמודים: <strong>100</strong></span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fa-solid fa-barcode"></i>
+                            <span>דאנאקוד: <strong>1272-3449</strong></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Left Side: Book 3D Showcase -->
+                <div class="book-container">
+                    <div class="book-wrapper">
+                        <img class="book-img" src="book.jpg" alt="עטיפת הספר חיים רק פעם אחת - יהודה עוזר לב">
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Insights Section -->
+        <section class="section-insights">
+            <h2 class="section-title">על מה הספר יעזור לך להתבונן?</h2>
+            
+            <div class="insights-grid">
+                <div class="insight-card">
+                    <div class="insight-icon"><i class="fa-solid fa-compass"></i></div>
+                    <h3>איך מסתדרים עם זה?</h3>
+                    <p>קבלת כלים פנימיים להתמודדות עם עובדת זמניות החיים והפיכתה למנוע צמיחה אישי.</p>
+                </div>
+                
+                <div class="insight-card">
+                    <div class="insight-icon"><i class="fa-solid fa-heart"></i></div>
+                    <h3>איך שמחים בהבנה הזו?</h3>
+                    <p>המרת הפחד מאי-הוודאות בהכרת תודה ושמחה יומיומית מתוך נוכחות והתבוננות מלאה.</p>
+                </div>
+
+                <div class="insight-card">
+                    <div class="insight-icon"><i class="fa-solid fa-sun"></i></div>
+                    <h3>באהבה ובשמחה</h3>
+                    <p>איך לקבל את החיים מתוך אהבה פתוחה וממה צריך להיזהר לאורך המסע האישי.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reviews / Testimonials Section -->
+        <section class="reviews-section">
+            <div class="reviews-container">
+                
+                <div class="reviews-header">
+                    <h2 class="reviews-header-title">חוות דעת על הספר</h2>
+                    
+                    <div class="score-box">
+                        <div class="score-number">5/5</div>
+                        <div class="score-info">
+                            <span class="label">דירוג הקוראים</span>
+                            <span class="total">סה״כ 1 חוות דעת</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-stars">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+
+                    <div class="reviewer-meta">
+                        <div class="reviewer-avatar">מ</div>
+                        <div>
+                            <div class="reviewer-name">מנחם</div>
+                            <div class="review-date">1 במאי 2026</div>
+                        </div>
+                    </div>
+
+                    <p class="review-content">
+                        אהבתי את הספר. הרגיש לי שהסופר מלמד אותי תובנות עמוקות בשפה פשוטה ומדברת בגובה העיניים.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Script to track InitiateCheckout event -->
+    <script>
+        document.querySelectorAll('.js-buy-trigger').forEach(function(button) {
+            button.addEventListener('click', function() {
+                var edition = this.getAttribute('data-type');
+                var price = parseFloat(this.getAttribute('data-price')) || 79.00;
+                
+                if (typeof fbq === 'function') {
+                    fbq('track', 'InitiateCheckout', {
+                        content_name: 'חיים רק פעם אחת - ' + (edition === 'digital' ? 'דיגיטלי' : 'מודפס'),
+                        value: price,
+                        currency: 'ILS'
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
