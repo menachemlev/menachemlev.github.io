@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 Homeowner Remodel Assessment | Check Eligibility</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '555735897256596');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=555735897256596&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --accent-green: #10b981;
+            --bg-body: #f8fafc;
+            --card-bg: #ffffff;
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+            --border-light: #e2e8f0;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow-x: hidden;
+        }
+
+        /* Top Notification Bar */
+        .top-bar {
+            background: #0f172a;
+            color: #e2e8f0;
+            font-size: 0.85rem;
+            text-align: center;
+            padding: 10px 16px;
+            font-weight: 500;
+        }
+
+        .top-bar span {
+            color: var(--accent-green);
+            font-weight: 700;
+        }
+
+        /* Container */
+        .quiz-wrapper {
+            width: 100%;
+            max-width: 620px;
+            margin: 30px auto;
+            padding: 0 16px;
+        }
+
+        /* Quiz Card */
+        .quiz-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-light);
+            box-shadow: 0 15px 35px -5px rgba(15, 23, 42, 0.08), 0 0 10px rgba(0,0,0,0.02);
+            padding: 36px 28px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        /* Progress Bar */
+        .progress-header {
+            margin-bottom: 28px;
+        }
+
+        .progress-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .progress-track {
+            height: 6px;
+            background: #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 33%;
+            background: linear-gradient(90deg, #3b82f6, var(--primary));
+            border-radius: 10px;
+            transition: width 0.4s ease;
+        }
+
+        /* Steps */
+        .quiz-step {
+            display: none;
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .quiz-step.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .step-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #eff6ff;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.8rem;
+            padding: 4px 12px;
+            border-radius: 30px;
+            margin-bottom: 12px;
+        }
+
+        .step-title {
+            font-size: 1.45rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            line-height: 1.3;
+            margin-bottom: 8px;
+        }
+
+        .step-subtitle {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        /* Options */
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option-btn {
+            width: 100%;
+            background: #ffffff;
+            border: 2px solid var(--border-light);
+            border-radius: var(--radius-md);
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            outline: none;
+            text-align: left;
+        }
+
+        .option-btn:hover {
+            border-color: var(--primary);
+            background: #f8faff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08);
+        }
+
+        .option-btn i {
+            color: #94a3b8;
+            font-size: 1.1rem;
+            transition: color 0.2s, transform 0.2s;
+        }
+
+        .option-btn:hover i {
+            color: var(--primary);
+            transform: translateX(4px);
+        }
+
+        /* Loader Step */
+        .loader-box {
+            text-align: center;
+            padding: 40px 10px;
+        }
+
+        .spinner {
+            width: 56px;
+            height: 56px;
+            border: 4px solid #e2e8f0;
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 24px auto;
+        }
+
+        .loader-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .loader-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Final Result */
+        .result-box {
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .success-icon {
+            width: 68px;
+            height: 68px;
+            background: #ecfdf5;
+            color: var(--accent-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 20px auto;
+            border: 2px solid #a7f3d0;
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: #ffffff;
+            font-size: 1.15rem;
+            font-weight: 800;
+            padding: 18px 24px;
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.35);
+            transition: all 0.3s;
+            margin-top: 24px;
+            animation: pulseCta 2s infinite;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(16, 185, 129, 0.5);
+            filter: brightness(1.05);
+        }
+
+        /* Social Proof / Security Badges */
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 28px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-light);
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .trust-item i {
+            color: var(--accent-green);
+        }
+
+        /* Footer & Compliance */
+        footer {
+            padding: 24px 16px;
+            text-align: center;
+            font-size: 0.78rem;
+            color: #94a3b8;
+            max-width: 640px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-dark);
+            text-decoration: underline;
+        }
+
+        /* Disqualified Notice */
+        .disqualified-box {
+            text-align: center;
+            padding: 20px 0;
+            display: none;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0.6); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes pulseCta {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.015); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <i class="fa-solid fa-clock-rotate-left"></i> <span>2026 Homeowner Program:</span> Check local certified remodel estimates
+    </div>
+
+    <div class="quiz-wrapper">
+        <div class="quiz-card">
+
+            <!-- Progress Track -->
+            <div class="progress-header" id="progressHeader">
+                <div class="progress-meta">
+                    <span id="stepCounter">Question 1 of 3</span>
+                    <span id="stepPercent">33%</span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+
+            <!-- Step 1: Home Ownership (Critical Qualifier) -->
+            <div class="quiz-step active" id="step1">
+                <span class="step-badge"><i class="fa-solid fa-shield-check"></i> Eligibility Check</span>
+                <h1 class="step-title">Do you currently own the home you live in?</h1>
+                <p class="step-subtitle">Contractor estimates and discounts are available exclusively to homeowners.</p>
+                <div class="options-list">
+                    <button class="option-btn" onclick="nextStep(2)">
+                        <span>Yes, I am the homeowner</span>
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                    <button class="option-btn" onclick="showDisqualified()">
+                        <span>No, I am currently renting</span>
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 2: Remodel Type -->
+            <div class="quiz-step" id="step2">
+                <span class="step-badge"><i class="fa-solid fa-bath"></i> Project Scope</span>
+                <h2 class="step-title">What type of bathroom project are you planning?</h2>
+                <p class="step-subtitle">Choose the primary area of improvement.</p>
+                <div class="options-list">
+                    <button class="option-btn" onclick="nextStep(3)">
+                        <span>Complete Bathroom Remodel</span>
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                    <button class="option-btn" onclick="nextStep(3)">
+                        <span>Shower / Tub Replacement</span>
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                    <button class="option-btn" onclick="nextStep(3)">
+                        <span>Walk-in Shower Conversion</span>
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                    <button class="option-btn" onclick="nextStep(3)">
+                        <span>Vanity, Flooring & Cabinets</span>
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 3: Timeframe -->
+            <div class="quiz-step" id="step3">
+                <span class="step-badge"><i class="fa-solid fa-calendar-check"></i> Timeline</span>
+                <h2 class="step-title">When are you looking to start?</h2>
+                <p class="step-subtitle">This helps match you with available crews.</p>
+                <div class="options-list">
+                    <button class="option-btn" onclick="startMatching()">
+                        <span>Immediately (Next 30 days)</span>
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                    <button class="option-btn" onclick="startMatching()">
+                        <span>Within 1 to 3 months</span>
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                    <button class="option-btn" onclick="startMatching()">
+                        <span>Just researching / planning</span>
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Matching Loader -->
+            <div class="quiz-step" id="stepLoader">
+                <div class="loader-box">
+                    <div class="spinner"></div>
+                    <h3 class="loader-title">Analyzing Local Contractors...</h3>
+                    <p class="loader-subtitle">Checking certified remodelers and current regional incentives.</p>
+                </div>
+            </div>
+
+            <!-- Final Result / Bridge Out -->
+            <div class="quiz-step" id="stepResult">
+                <div class="result-box">
+                    <div class="success-icon">
+                        <i class="fa-solid fa-check"></i>
+                    </div>
+                    <span class="step-badge" style="background: #ecfdf5; color: #059669;">Matches Confirmed</span>
+                    <h2 class="step-title" style="font-size: 1.6rem; margin-top: 10px;">Pre-Qualification Complete!</h2>
+                    <p class="step-subtitle" style="margin-bottom: 20px;">
+                        We found top-rated, licensed bathroom remodeling specialists available in your area.
+                    </p>
+
+                    <a href="https://www.facebook.com" id="affiliateCta" class="cta-btn">
+                        <span>Continue to Get Free Quote</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Disqualified Message (for renters) -->
+            <div class="disqualified-box" id="disqualifiedBox">
+                <div class="success-icon" style="background: #fef2f2; color: #ef4444; border-color: #fecaca;">
+                    <i class="fa-solid fa-house"></i>
+                </div>
+                <h3 class="step-title" style="font-size: 1.3rem;">Homeowner Program Requirement</h3>
+                <p class="step-subtitle" style="margin-top: 8px;">
+                    Unfortunately, contractor quotes and special upgrade pricing are currently available only for property owners.
+                </p>
+            </div>
+
+            <!-- Trust Meta -->
+            <div class="trust-badges" id="trustBadges">
+                <div class="trust-item"><i class="fa-solid fa-badge-check"></i> 100% Free Service</div>
+                <div class="trust-item"><i class="fa-solid fa-lock"></i> No Obligation</div>
+                <div class="trust-item"><i class="fa-solid fa-shield"></i> Licensed Pros</div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Meta Compliance Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Contact Us</a>
+        </div>
+        <p>
+            Disclaimer: This site is an independent service marketplace designed to connect homeowners with local contractors and service providers. This site is not affiliated with, endorsed by, or a part of Meta Platforms, Inc. or Facebook.
+        </p>
+    </footer>
+
+    <script>
+        // Target affiliate destination
+        const TARGET_URL = "https://www.facebook.com";
+
+        // Capture incoming URL query params (fbclid, utm_source, etc.) and append to affiliate link
+        function getPreservedUrl(baseUrl) {
+            const currentParams = window.location.search;
+            if (!currentParams) return baseUrl;
+            const separator = baseUrl.includes('?') ? '&' : '?';
+            return baseUrl + separator + currentParams.substring(1);
+        }
+
+        // Set affiliate link href with preserved parameters
+        const ctaBtn = document.getElementById('affiliateCta');
+        if (ctaBtn) {
+            ctaBtn.href = getPreservedUrl(TARGET_URL);
+
+            // Fire custom event when user clicks through to advertiser
+            ctaBtn.addEventListener('click', function() {
+                if (typeof fbq === 'function') {
+                    fbq('trackCustom', 'Quiz_Lead_Outbound', {
+                        step: 'result_click',
+                        destination: TARGET_URL
+                    });
+                }
+            });
+        }
+
+        // Stepper Logic
+        function nextStep(stepNumber) {
+            document.querySelectorAll('.quiz-step').forEach(el => el.classList.remove('active'));
+
+            const targetStep = document.getElementById('step' + stepNumber);
+            if (targetStep) targetStep.classList.add('active');
+
+            const progressFill = document.getElementById('progressFill');
+            const stepCounter = document.getElementById('stepCounter');
+            const stepPercent = document.getElementById('stepPercent');
+
+            if (stepNumber === 2) {
+                progressFill.style.width = '66%';
+                stepCounter.innerText = 'Question 2 of 3';
+                stepPercent.innerText = '66%';
+            } else if (stepNumber === 3) {
+                progressFill.style.width = '100%';
+                stepCounter.innerText = 'Question 3 of 3';
+                stepPercent.innerText = '100%';
+            }
+        }
+
+        // Loader simulation after step 3
+        function startMatching() {
+            document.querySelectorAll('.quiz-step').forEach(el => el.classList.remove('active'));
+            document.getElementById('stepLoader').classList.add('active');
+            document.getElementById('progressHeader').style.display = 'none';
+
+            setTimeout(function() {
+                document.getElementById('stepLoader').classList.remove('active');
+                document.getElementById('stepResult').classList.add('active');
+                
+                // Track step completion
+                if (typeof fbq === 'function') {
+                    fbq('trackCustom', 'Quiz_Completed');
+                }
+            }, 1400);
+        }
+
+        // Disqualification handler for non-homeowners
+        function showDisqualified() {
+            document.querySelectorAll('.quiz-step').forEach(el => el.classList.remove('active'));
+            document.getElementById('progressHeader').style.display = 'none';
+            document.getElementById('trustBadges').style.display = 'none';
+            document.getElementById('disqualifiedBox').style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>
