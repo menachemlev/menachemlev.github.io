@@ -4,14 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>חיים רק פעם אחת | יהודה עוזר לב</title>
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&family=Frank+Ruhl+Libre:wght@600;700;800&display=swap" rel="stylesheet">
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231a1a1a'/><path d='M30 25 h30 a15 15 0 0 1 15 15 v35 a10 10 0 0 0 -15 -10 h-30 z' fill='%23d4af37'/><path d='M30 25 h-10 a5 5 0 0 0 -5 5 v40 a5 5 0 0 0 5 5 h10 z' fill='%23b8972e'/><line x1='35' y1='40' x2='60' y2='40' stroke='%231a1a1a' stroke-width='3' stroke-linecap='round'/><line x1='35' y1='50' x2='55' y2='50' stroke='%231a1a1a' stroke-width='3' stroke-linecap='round'/></svg>">
-    <!-- Meta Pixel Code -->
     <script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -21,14 +18,12 @@
     t.src=v;s=b.getElementsByTagName(e)[0];
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '555735897256596'); /* יש להחליף את YOUR_PIXEL_ID במזהה הפיקסל */
+    fbq('init', '555735897256596');
     fbq('track', 'PageView');
     </script>
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=555735897256596&ev=PageView&noscript=1"
     /></noscript>
-    <!-- End Meta Pixel Code -->
-
     <style>
         :root {
             --bg-dark: #0b0f19;
@@ -58,7 +53,6 @@
             line-height: 1.7;
         }
 
-        /* Ambient Glow Backgrounds */
         .ambient-glow {
             position: fixed;
             width: 500px;
@@ -84,7 +78,6 @@
             pointer-events: none;
         }
 
-        /* Layout */
         .container {
             max-width: 1100px;
             margin: 0 auto;
@@ -93,7 +86,6 @@
             z-index: 1;
         }
 
-        /* Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -108,7 +100,6 @@
             align-items: center;
         }
 
-        /* 3D Book Presentation */
         .book-container {
             display: flex;
             justify-content: center;
@@ -136,7 +127,6 @@
             display: block;
         }
 
-        /* Typography */
         .badge {
             display: inline-flex;
             align-items: center;
@@ -206,38 +196,20 @@
             margin-bottom: 8px;
         }
 
-        /* Purchase Options */
-        .purchase-options {
-            display: grid;
-            grid-template-columns: 1fr 1.1fr;
-            gap: 16px;
+        /* Purchase Box - Focused single action */
+        .purchase-box {
+            max-width: 440px;
             margin-bottom: 30px;
         }
 
         .price-card {
             position: relative;
-            background: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 14px;
-            padding: 20px 16px;
+            background: linear-gradient(180deg, rgba(212, 175, 55, 0.08) 0%, rgba(22, 28, 45, 0.9) 100%);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            border-radius: 16px;
+            padding: 24px 20px;
             text-align: center;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(8px);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .price-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--gold-primary);
-            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.15);
-        }
-
-        .price-card.featured {
-            border-color: rgba(212, 175, 55, 0.5);
-            background: linear-gradient(180deg, rgba(212, 175, 55, 0.08) 0%, rgba(22, 28, 45, 0.85) 100%);
-            box-shadow: 0 0 25px rgba(212, 175, 55, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 25px rgba(212, 175, 55, 0.1);
         }
 
         .sale-tag {
@@ -247,58 +219,51 @@
             transform: translateX(-50%);
             background: linear-gradient(135deg, #ef4444, #dc2626);
             color: #fff;
-            font-size: 0.78rem;
+            font-size: 0.8rem;
             font-weight: 700;
-            padding: 3px 12px;
+            padding: 4px 14px;
             border-radius: 20px;
             box-shadow: 0 4px 10px rgba(239, 68, 68, 0.4);
             white-space: nowrap;
         }
 
         .card-type {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: 6px;
+            font-size: 1rem;
+            color: var(--gold-light);
+            margin-bottom: 8px;
+            font-weight: 600;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
+            gap: 8px;
         }
 
         .card-price-container {
-            margin-bottom: 12px;
+            margin-bottom: 16px;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 55px;
-        }
-
-        .card-price {
-            font-size: 1.7rem;
-            font-weight: 700;
-            color: #ffffff;
+            gap: 12px;
         }
 
         .card-price.sale-active {
-            font-size: 2.1rem;
-            color: var(--gold-light);
+            font-size: 2.5rem;
+            color: #fff;
             font-weight: 800;
-            line-height: 1.1;
+            line-height: 1;
         }
 
         .old-price {
-            font-size: 1.05rem;
+            font-size: 1.2rem;
             color: var(--text-muted);
             text-decoration: line-through;
-            opacity: 0.75;
-            margin-bottom: 2px;
+            opacity: 0.7;
         }
 
         .card-btn {
             width: 100%;
-            padding: 11px;
-            border-radius: 8px;
+            padding: 14px 20px;
+            border-radius: 10px;
             font-weight: 700;
             cursor: pointer;
             border: none;
@@ -306,31 +271,40 @@
             display: inline-flex;
             justify-content: center;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             text-decoration: none;
-            font-size: 0.95rem;
+            font-size: 1.05rem;
         }
 
         .btn-gold {
             background: var(--gold-gradient);
             color: #0b0f19;
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
         }
 
         .btn-gold:hover {
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
-            transform: scale(1.02);
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.6);
+            transform: translateY(-2px);
             opacity: 0.95;
         }
 
-        .btn-outline {
-            background: rgba(255, 255, 255, 0.05);
-            color: #fff;
-            border: 1px solid rgba(255, 255, 255, 0.15);
+        /* Subtle secondary link for digital */
+        .digital-option-text {
+            margin-top: 14px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-muted);
         }
 
-        .btn-outline:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: var(--gold-light);
+        .digital-option-text a {
+            color: var(--gold-light);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            transition: opacity 0.2s;
+        }
+
+        .digital-option-text a:hover {
+            opacity: 0.8;
         }
 
         .book-specs {
@@ -362,7 +336,6 @@
             color: var(--gold-primary);
         }
 
-        /* Insights Section */
         .section-insights {
             padding: 70px 0;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
@@ -419,7 +392,6 @@
             font-size: 0.95rem;
         }
 
-        /* Reviews Section */
         .reviews-section {
             padding: 70px 0 100px 0;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
@@ -482,7 +454,6 @@
             color: var(--text-muted);
         }
 
-        /* Review Card */
         .review-card {
             padding: 28px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.06);
@@ -534,7 +505,6 @@
             line-height: 1.6;
         }
 
-        /* Animations */
         @keyframes float {
             0%, 100% { transform: translateY(0) rotateY(0deg); }
             50% { transform: translateY(-12px) rotateY(-4deg); }
@@ -545,7 +515,6 @@
             100% { transform: scale(1.2); opacity: 0.9; }
         }
 
-        /* Responsive */
         @media (max-width: 900px) {
             .hero-grid {
                 grid-template-columns: 1fr;
@@ -560,7 +529,7 @@
                 max-width: 260px;
             }
 
-            .author-name, .rating-summary, .book-specs {
+            .author-name, .rating-summary, .book-specs, .card-price-container {
                 justify-content: center;
             }
 
@@ -575,9 +544,7 @@
                 align-items: flex-start;
             }
 
-            .purchase-options {
-                grid-template-columns: 1fr;
-                max-width: 380px;
+            .purchase-box {
                 margin-left: auto;
                 margin-right: auto;
             }
@@ -591,11 +558,9 @@
 
     <div class="container">
         
-        <!-- Hero Section -->
         <section class="hero">
             <div class="hero-grid">
                 
-                <!-- Right Side: Content -->
                 <div class="content-side">
                     <span class="badge">
                         <i class="fa-solid fa-sparkles"></i> חדש על המדף • מבצע השקה לחגים
@@ -624,34 +589,29 @@
                         </p>
                     </div>
 
-                    <!-- Pricing Options -->
-                    <div class="purchase-options">
-                        <!-- Digital Edition -->
+                    <div class="purchase-box">
                         <div class="price-card">
-                            <div class="card-type"><i class="fa-solid fa-tablet-screen-button"></i> מהדורה דיגיטלית</div>
-                            <div class="card-price-container">
-                                <div class="card-price">₪35</div>
-                            </div>
-                            <a href="https://nivbook.co.il/product/%D7%97%D7%99%D7%99%D7%9D-%D7%A8%D7%A7-%D7%A4%D7%A2%D7%9D-%D7%90%D7%97%D7%AA/" target="_blank" rel="noopener noreferrer" class="card-btn btn-outline js-buy-trigger" data-type="digital" data-price="35">
-                                <i class="fa-solid fa-download"></i> רכישה דיגיטלית
-                            </a>
-                        </div>
-
-                        <!-- Print Edition with Sale -->
-                        <div class="price-card featured">
                             <span class="sale-tag">מבצע השקה מיוחד</span>
-                            <div class="card-type"><i class="fa-solid fa-book"></i> מהדורה מודפסת</div>
+                            <div class="card-type"><i class="fa-solid fa-book"></i> מהדורה מודפסת בכריכה רכה</div>
+                            
                             <div class="card-price-container">
                                 <span class="old-price">₪179</span>
                                 <div class="card-price sale-active">₪79</div>
                             </div>
+                            
                             <a href="https://nivbook.co.il/product/%D7%97%D7%99%D7%99%D7%9D-%D7%A8%D7%A7-%D7%A4%D7%A2%D7%9D-%D7%90%D7%97%D7%AA/" target="_blank" rel="noopener noreferrer" class="card-btn btn-gold js-buy-trigger" data-type="print" data-price="79">
-                                <i class="fa-solid fa-cart-shopping"></i> לרכישה באתר ההוצאה
+                                <i class="fa-solid fa-cart-shopping"></i> להזמנת עותק מודפס באתר ההוצאה
                             </a>
+                            
+                            <div class="digital-option-text">
+                                מעדיפים לקרוא בנייד או בטאבלט? 
+                                <a href="https://nivbook.co.il/product/%D7%97%D7%99%D7%99%D7%9D-%D7%A8%D7%A7-%D7%A4%D7%A2%D7%9D-%D7%90%D7%97%D7%AA/" target="_blank" rel="noopener noreferrer" class="js-buy-trigger" data-type="digital" data-price="35">
+                                    לרכישת מהדורה דיגיטלית ב-35 ₪
+                                </a>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Book Meta -->
                     <div class="book-specs">
                         <div class="spec-item">
                             <i class="fa-solid fa-building-columns"></i>
@@ -668,7 +628,6 @@
                     </div>
                 </div>
 
-                <!-- Left Side: Book 3D Showcase -->
                 <div class="book-container">
                     <div class="book-wrapper">
                         <img class="book-img" src="book.jpg" alt="עטיפת הספר חיים רק פעם אחת - יהודה עוזר לב">
@@ -678,7 +637,6 @@
             </div>
         </section>
 
-        <!-- Insights Section -->
         <section class="section-insights">
             <h2 class="section-title">על מה הספר יעזור לך להתבונן?</h2>
             
@@ -703,7 +661,6 @@
             </div>
         </section>
 
-        <!-- Reviews / Testimonials Section -->
         <section class="reviews-section">
             <div class="reviews-container">
                 
@@ -746,7 +703,6 @@
 
     </div>
 
-    <!-- Script to track InitiateCheckout event -->
     <script>
         document.querySelectorAll('.js-buy-trigger').forEach(function(button) {
             button.addEventListener('click', function() {
